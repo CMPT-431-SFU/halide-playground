@@ -99,7 +99,7 @@ set_target_properties(All_bc PROPERTIES LLVMIR_DIR "")
 set_target_properties(All_bc PROPERTIES LLVMIR_FILES "${listVar}")
 
 llvmir_attach_link_target(
-  TARGET All
+  TARGET lens_blur_exe
 DEPENDS All_bc)
 
 

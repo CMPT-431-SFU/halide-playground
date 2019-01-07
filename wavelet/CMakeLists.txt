@@ -69,5 +69,5 @@ set_target_properties(All_bc PROPERTIES LLVMIR_DIR "")
 set_target_properties(All_bc PROPERTIES LLVMIR_FILES "${listVar}")
 
 llvmir_attach_link_target(
-  TARGET All
+  TARGET wavelet_exe
 DEPENDS All_bc)
