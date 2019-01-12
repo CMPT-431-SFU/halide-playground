@@ -7,7 +7,7 @@
 # To use:
 # mkdir cmake_build && cd cmake_build && cmake .. && make -j8 && ./bin/wavelet ../../images/gray.png .
 
-project(camera_pipe)
+project(harris_pipe)
 cmake_minimum_required(VERSION 3.1.3)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../LLVM-IR-CMAKE/cmake")
