@@ -8,11 +8,9 @@ Halide library and runtime, LLVM-IR-CMake Utils, -libjpeg, -libpng, any modern C
 sudo apt-get install libjpeg-dev libpng-dev 
 ```
 
-## Example: Generating bitcode and exe for wavelet.
+## Build
 ```
-cd wavelet; mkdir build; cd build; 
-cmake ../ 
+mkdir build; cd build; 
+cmake ../ -DHALIDE_DISTRIB_DIR=PATH_OF_DISTRIB_DIR
 make 
-make wavelet_bc
-make All 
 ```
