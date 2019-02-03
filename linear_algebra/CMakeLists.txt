@@ -1,12 +1,6 @@
 project(linear_algebra)
 cmake_minimum_required(VERSION 3.1.3)
 
-
-set(HALIDE_DISTRIB_DIR "/packages/halide-lib")
-# halide.cmake defaults to using the shared-library version of libHalide;
-# we can make it prefer the static-library version by setting this:
-# set(HALIDE_DISTRIB_USE_STATIC_LIBRARY TRUE)
-
 include("${HALIDE_DISTRIB_DIR}/halide.cmake")
 
 
