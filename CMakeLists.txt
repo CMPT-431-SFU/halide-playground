@@ -39,6 +39,6 @@ add_subdirectory(harris)
 add_subdirectory(lens_blur)
 add_subdirectory(stereo)
 add_subdirectory(wavelet)
-
+add_subdirectory(2d_blur)
 
 
