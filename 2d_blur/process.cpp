@@ -28,7 +28,8 @@ using namespace Halide;
 using namespace Halide::Tools;
 using namespace std;
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
   // Define a 7x7 Gaussian Blur with a repeat-edge boundary condition.
   float sigma = 1.5f;
   // Take a color 8-bit input
@@ -77,21 +78,24 @@ int main(int argc, char **argv) {
   // Blur it horizontally:
   Func blur_x("blur_x");
   blur_x(x, y, c) =
-      (input_16(x - 1, y, c) + input_16(x, y, c) + input_16(x + 1, y, c)) / 3;
+      (input_16(x - 2, y, c) + input_16(x - 1, y, c) + input_16(x, y, c) + input_16(x + 1, y, c) + input_16(x + 2, y, c)) / 5;
 
   // Blur it vertically:
   Func blur_y("blur_y");
   blur_y(x, y, c) =
-      (blur_x(x, y - 1, c) + blur_x(x, y, c) + blur_x(x, y + 1, c)) / 3;
+      (input_16(x, y - 2, c) + blur_x(x, y - 1, c) + blur_x(x, y, c) + blur_x(x, y + 1, c) + blur_x(x, y + 2, c)) / 5;
 
   // Convert back to 8-bit.
   Func output("output");
+  Func output_x("output_x");
+  output_x(x, y, c) = cast<uint8_t>(blur_x(x, y, c));
   output(x, y, c) = cast<uint8_t>(blur_y(x, y, c));
-
+  Buffer<uint8_t> result_x = output_x.realize(input.width(), input.height(), 3);
   Buffer<uint8_t> result = output.realize(input.width(), input.height(), 3);
   // Save the result. It should look like a slightly blurry
   // parrot, but this time it will be the same size as the
   // input.
+  save_image(result_x, "xblur_" + (std::string)argv[2]);
   save_image(result, argv[2]); // Benchmark the pipeline.
   return 0;
 }
